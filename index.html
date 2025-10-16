@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gaurav Sharma — Venture, AI & Research</title>
+
+  <!-- Font: system / clean -->
+  <style>
+    /* --- Minimal, Steve-Jobs-like styling --- */
+    :root{
+      --bg: #ffffff;
+      --text: #111;
+      --muted: #666;
+      --accent: #111; /* keep monochrome for the Jobs aesthetic */
+      --maxw: 880px;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      transition: background .25s ease, color .25s ease;
+      line-height:1.55;
+    }
+
+    /* Dark mode variables */
+    body.dark {
+      --bg: #0b0b0b;
+      --text: #ececec;
+      --muted: #9a9a9a;
+      --accent: #ececec;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* Layout */
+    .wrap{max-width:var(--maxw);margin: 48px auto;padding: 0 20px;}
+    header {text-align:center;padding: 48px 0 28px;}
+    .name {
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 6px 0 4px;
+    }
+    .title {
+      font-size: 14px;
+      color:var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* Profile image */
+    .photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      display:block;
+      margin: 0 auto 18px;
+      border: 4px solid transparent;
+    }
+    body.dark .photo { border-color: rgba(255,255,255,.06); }
+
+    /* Social icons row */
+    .social {
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      margin-top: 10px;
+    }
+    .social a { color:var(--text); text-decoration:none; font-size:18px; opacity:.9; }
+    .social a:hover{opacity:1; transform:translateY(-2px);}
+
+    /* Sections */
+    section { padding: 28px 0; border-top: 1px solid rgba(0,0,0,0.04); }
+    body.dark section { border-top-color: rgba(255,255,255,0.04); }
+    h2 {
+      font-size: 16px;
+      margin: 0 0 14px 0;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    p, li { font-size: 15px; color:var(--text); margin: 0 0 12px 0; }
+    ul { padding-left: 18px; margin: 0; }
+
+    /* Compact cards for experience */
+    .card {
+      padding: 16px 18px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.02);
+      margin-bottom: 12px;
+    }
+    body.dark .card { background: rgba(255,255,255,0.02); }
+    .role { font-weight:600; margin-bottom:6px; }
+    .meta { color:var(--muted); font-size:13px; margin-bottom:8px; }
+
+    footer { text-align:center; color:var(--muted); padding: 34px 0 80px; font-size:13px; }
+
+    /* Dark mode toggle (simple button) */
+    .toggle {
+      position: fixed;
+      right:18px;
+      top:16px;
+      background:transparent;
+      border:1px solid rgba(0,0,0,0.06);
+      border-radius:8px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-size:14px;
+      color:var(--text);
+      backdrop-filter: blur(6px);
+    }
+    body.dark .toggle { border-color: rgba(255,255,255,0.06); color:var(--text); }
+
+    /* Responsive tweaks */
+    @media (max-width:520px){
+      .photo{width:132px;height:132px}
+      .wrap{margin:28px auto}
+    }
+
+  </style>
+
+  <!-- Minimal icons (inline SVG) -->
+  <script>
+    // Toggle dark mode and remember preference
+    function toggleTheme(){
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      try { localStorage.setItem('prefers-dark', isDark ? '1' : '0'); } catch(e){}
+      updateToggleLabel();
+    }
+    function updateToggleLabel(){
+      const btn = document.getElementById('themeBtn');
+      if(!btn) return;
+      btn.textContent = document.body.classList.contains('dark') ? '☀︎ Light' : '🌙 Dark';
+    }
+    // Initialize on load
+    (function(){
+      try {
+        const pref = localStorage.getItem('prefers-dark');
+        if(pref === '1') document.body.classList.add('dark');
+      } catch(e){}
+      window.addEventListener('DOMContentLoaded', updateToggleLabel);
+    })();
+  </script>
+</head>
+<body>
+  <!-- Theme toggle -->
+  <button id="themeBtn" class="toggle" onclick="toggleTheme()">🌙 Dark</button>
+
+  <div class="wrap">
+    <header>
+      <!-- PROFILE PHOTO:
+           Option A: Upload your own headshot to the repo named `profile.jpg`.
+           Option B: Use an absolute URL (replace src="profile.jpg" with the URL).
+           If image not found, placeholder appears automatically.
+      -->
+      <img class="photo" src="profile.jpg" alt="Gaurav Sharma photo"
+           onerror="this.onerror=null; this.src='https://via.placeholder.com/320?text=Gaurav+Sharma';">
+
+      <div class="name">Gaurav Sharma</div>
+      <div class="title">Venture Capital · AI & Frontier Tech · Founder</div>
+
+      <div class="social" aria-label="social links">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/sarosvale/" target="_blank" rel="noopener">
+          <!-- LinkedIn SVG -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M4.98 3.5C4.98 4.61 4.07 5.5 2.96 5.5C1.85 5.5 0.94 4.61 0.94 3.5C0.94 2.39 1.85 1.5 2.96 1.5C4.07 1.5 4.98 2.39 4.98 3.5Z" fill="currentColor"/>
+            <path d="M0.5 24H5.4V7.98H0.5V24Z" fill="currentColor"/>
+            <path d="M8.37 7.98V24H13.26V15.55C13.26 12.96 18.02 12.64 18.02 15.55V24H22.92V14.02C22.92 8.56 16.9 8.95 13.9 11.54V7.98H8.37Z" fill="currentColor"/>
+          </svg>
+        </a>
+
+        <!-- ResearchGate (if unsupported, it's simply an icon link) -->
+        <a href="https://www.researchgate.net/profile/Gaurav-Sharma-237" target="_blank" rel="noopener" title="ResearchGate">
+          <!-- simple book-like icon for publications -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M3 5.5A2.5 2.5 0 0 1 5.5 3h12A2.5 2.5 0 0 1 20 5.5v13A2.5 2.5 0 0 1 17.5 21H5.5A2.5 2.5 0 0 1 3 18.5V5.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M7 7h10M7 11h10M7 15h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:Gauravdodrawat@gmail.com" title="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M2 6.5v11A2.5 2.5 0 0 0 4.5 20h15A2.5 2.5 0 0 0 22 17.5v-11A2.5 2.5 0 0 0 19.5 4h-15A2.5 2.5 0 0 0 2 6.5z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+            <path d="M21 6.5l-9 6-9-6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+      <p>
+        I structured an early-stage frontier tech fund and leverage AI personalization and predictive modeling to source, evaluate and support startups. I work at the intersection of venture capital, applied AI, and product-led founding.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" aria-labelledby="exp-heading">
+      <h2 id="exp-heading">Experience</h2>
+
+      <div class="card">
+        <div class="role">General Partner Fellow — VC Lab · Radha Capital</div>
+        <div class="meta">Aug 2024 – Present</div>
+        <div>Structuring a $9M pre-seed fund focused on frontier tech; sourcing startups and building an LP pipeline. Focus on thesis-driven sourcing and AI-enabled diligence.</div>
+      </div>
+
+      <div class="card">
+        <div class="role">Founder — Urbmeal (Kyukru.com)</div>
+        <div class="meta">Jun 2022 – Present</div>
+        <div>Founded a personalized chef & meal-planning product; pivoted to AI-driven meal planning and delivery, improving retention and unit economics.</div>
+      </div>
+
+      <div class="card">
+        <div class="role">Venture Scout — 30+ VC Funds</div>
+        <div class="meta">Nov 2023 – May 2025</div>
+        <div>Scouted 300+ startups across AI, SaaS, and deeptech; analyzed 100+ for investment potential and facilitated 50+ introductions leading to multiple due diligence rounds.</div>
+      </div>
+
+      <div class="card">
+        <div class="role">Investment Banking Intern — SmartKnower</div>
+        <div class="meta">May 2022 – Jul 2022</div>
+      </div>
+
+      <div class="card">
+        <div class="role">Founder — fikarkyu.com</div>
+        <div class="meta">Jul 2020 – May 2022</div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <ul>
+        <li><strong>Venture & Investment:</strong> Technical & market due diligence, portfolio construction, financial modelling, term sheets.</li>
+        <li><strong>Market Research:</strong> TAM/SAM/SOM, competitive analysis, business model evaluation.</li>
+        <li><strong>Technical:</strong> Machine Learning, NLP, AI-driven personalization, predictive modeling.</li>
+        <li><strong>Tools:</strong> PitchBook, Crunchbase, Carta, Pulley.</li>
+      </ul>
+    </section>
+
+    <!-- Publications & Research -->
+    <section id="publications" aria-labelledby="pub-heading">
+      <h2 id="pub-heading">Publications & Research</h2>
+
+      <div class="card">
+        <div class="role">Sandbox-Based Real-Time Cyber Attack Simulation and Analysis</div>
+        <div class="meta">Book Chapter · August 2025 · 15 reads</div>
+        <div>Co-authors: K. Santhi, Lawanya Shri M, G. D. Nithish Kumar, Gaurav Sharma</div>
+      </div>
+
+      <div class="card">
+        <div class="role">AI in Defence and Ethical Concerns</div>
+        <div class="meta">Conference Paper · February 2024 · 49 reads · 1 citation</div>
+        <div>Co-authors: K. Santhi, Lawanya Shri M, Sankalp Joshi, Gaurav Sharma</div>
+      </div>
+
+      <p style="margin-top:10px;color:var(--muted);font-size:13px">
+        Full publications list on <a href="https://www.researchgate.net/profile/Gaurav-Sharma-237" target="_blank" rel="noopener">ResearchGate</a>.
+      </p>
+    </section>
+
+    <!-- Education -->
+    <section id="education" aria-labelledby="edu-heading">
+      <h2 id="edu-heading">Education</h2>
+      <ul>
+        <li>Venture Institute — VC Program</li>
+        <li>Bachelor of Mechanical Engineering — Vellore Institute of Technology (2020–2024)</li>
+        <li>Techstars Venture Deals Program</li>
+        <li>Founder Institute — Incubator Alumnus</li>
+      </ul>
+    </section>
+
+    <footer>
+      © 2025 Gaurav Sharma
+    </footer>
+  </div>
+
+  <!-- No external JS frameworks required -->
+  <script>
+    // Small UX: press "t" to toggle theme (optional)
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 't' || e.key === 'T') toggleTheme();
+    });
+  </script>
+</body>
+</html>
